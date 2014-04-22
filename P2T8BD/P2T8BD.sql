@@ -4,9 +4,11 @@
 -- al atributo “apellidos” los datos de primer apellido y segundo
 -- apellido que se han pasado como parámetros, uniéndolos con un
 -- espacio entre ellos (USA LA FUNCIÓN CONCAT).
+
+-- Especificación del objeto Profesor
 CREATE OR REPLACE TYPE Profesor UNDER MiembroEscolar (especialidad VARCHAR2(20), antiguedad INTEGER, 
 CONSTRUCTOR FUNCTION Profesor(
-    nombre varchar2, primerApellido varchar2, segundoApellido varchar2, especialidad VARCHAR2)
+    codigo integer, nombre varchar2, primerApellido varchar2, segundoApellido varchar2, especialidad VARCHAR2)
   RETURN SELF
 AS
   RESULT);
@@ -17,7 +19,7 @@ AS
   -- Definimos el constructor del objeto
   CONSTRUCTOR
 FUNCTION Profesor(
-    nombre varchar2, primerApellido varchar2, segundoApellido varchar2, especialidad VARCHAR2)
+    codigo integer, nombre varchar2, primerApellido varchar2, segundoApellido varchar2, especialidad VARCHAR2)
   RETURN SELF
 AS
   RESULT
@@ -27,7 +29,7 @@ BEGIN
   SELF.nombre := nombre;
   SELF.apellidos := CONCAT(primerApellido, CONCAT(' ', segundoApellido));
   SELF.especialidad   := especialidad;
-  SELF.codigo := 0;
+  SELF.codigo := codigo;
   SELF.dni := NULL;
   SELF.sexo := NULL;
   SELF.fecha_nac := NULL;
