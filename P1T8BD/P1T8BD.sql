@@ -153,9 +153,9 @@ END;
 -- Crea, como tipo heredado de “MiembroEscolar”, el tipo de objeto “Alumno” con los siguientes atributos:
 -- cursoAlumno Cursos
 -- Especificación del objeto Alumno
-CREATE OR REPLACE TYPE Alumno UNDER MiembroEscolar ( cursoAlumno REF Cursos, CONSTRUCTOR
+CREATE OR REPLACE TYPE Alumno UNDER MiembroEscolar ( cursoAlumno Cursos, CONSTRUCTOR
 FUNCTION Alumno(
-    cursoAlumno REF Cursos)
+    cursoAlumno Cursos)
   RETURN SELF
 AS
   RESULT);
@@ -166,7 +166,7 @@ AS
   -- Definimos el constructor del objeto
   CONSTRUCTOR
 FUNCTION Alumno(
-    cursoAlumno REF Cursos)
+    cursoAlumno Cursos)
   RETURN SELF
 AS
   RESULT

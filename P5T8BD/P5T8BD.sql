@@ -26,9 +26,10 @@ DECLARE TYPE ListaCursos IS VARRAY(10) OF Cursos;
   -- Declaramos un array listaCursos1 del tipo ListaCursos
   listaCursos1 ListaCursos;
   
-  -- Declaramos una variable de referencia profe de tipo Profesor para almacenar
-  -- la referencia la profesor que guardaremos en el curso
-  profe REF Profesor;
+    -- Declaramos dos variables de referencia profe de tipo Profesor para almacenar
+  -- las referencias a los profesores que guardaremos en los cursos
+  profe1 REF Profesor;
+  profe2 REF Profesor;
 BEGIN
 
   -- Inicializamos el array listaCursos1 a un objeto del tipo ListaCursos 
@@ -40,22 +41,22 @@ BEGIN
 
   -- Selecionamos la referencia al profesor usando el código y lo almacenamos
   -- en la variable declarada a tal efecto
-  SELECT REF (p) INTO profe FROM Profesorado p WHERE p.CODIGO = 3;
+  SELECT REF (p) INTO profe1 FROM Profesorado p WHERE p.CODIGO = 3;
   
   -- Creamos un nuevo objeto curso con los valores definidos y lo almacenamos en la primera
   -- posición del array listaCursos1
-  listaCursos1(1) := NEW Cursos(1, 'Curso 1', profe, 20, '01/06/2011', '30/06/2011', 30);
+  listaCursos1(1) := NEW Cursos(1, 'Curso 1', profe1, 20, '01/06/2011', '30/06/2011', 30);
 
   -- Definimos el un nuevo elemento en el array usando extend
   listaCursos1.extend(1);
 
     -- Selecionamos la referencia al profesor usando el dni y lo almacenamos
   -- en la variable declarada a tal efecto
-  SELECT REF (p) INTO profe FROM Profesorado p WHERE p.DNI = '51083099F';
+  SELECT REF (p) INTO profe2 FROM Profesorado p WHERE p.DNI = '51083099F';
   
   -- Creamos un nuevo objeto curso con los valores definidos y lo almacenamos en la segunda
   -- posición del array listaCursos1
-  listaCursos1(2) := NEW Cursos(2, 'Curso 2', profe, 20, '01/06/2011', '30/06/2011', 30);
+  listaCursos1(2) := NEW Cursos(2, 'Curso 2', profe2, 20, '01/06/2011', '30/06/2011', 30);
   
 
   -- Mostramos los nombres de los cursos almacenados en el array
