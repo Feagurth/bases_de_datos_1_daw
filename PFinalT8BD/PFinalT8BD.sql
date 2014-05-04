@@ -8,26 +8,27 @@
 -- arbitrario elegido por ti a cada atributo. Por último, define una tabla de cada 
 -- tipo de objeto e inserta como mínimo 5 registros en cada tabla inventados por ti
 
--- Eliminación de los tipos si están creados anteriormente
-DROP TYPE Medico;
-DROP TYPE Paciente;
-DROP TYPE Persona;
+-- Debug
+DROP TYPE Hospital;
+DROP TYPE TablaHabitaciones;
 DROP TYPE Habitacion;
-
-/
+DROP TYPE Diagnostico;
+DROP TYPE Paciente;
+DROP TYPE Medico;
+DROP TYPE Persona;
 
 -- Cabecera del objeto Persona
 CREATE TYPE Persona AS OBJECT
 (
   -- Atributos del objeto Persona
   DNI                 VARCHAR2(10),
-  Nombre              VARCHAR2(15), 
-  Apellidos           VARCHAR2(30),   
-  Direccion           VARCHAR2(50),
-  Telefono            VARCHAR2(15), 
+  nombre              VARCHAR2(15), 
+  apellidos           VARCHAR2(30),   
+  direccion           VARCHAR2(250),
+  telefono            VARCHAR2(15), 
   
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, Nombre VARCHAR2, Apellidos VARCHAR2, Direccion VARCHAR2, Telefono VARCHAR2)RETURN SELF AS RESULT, 
+  CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, nombre VARCHAR2, apellidos VARCHAR2, direccion VARCHAR2, telefono VARCHAR2)RETURN SELF AS RESULT, 
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getDNI RETURN VARCHAR2,
@@ -51,10 +52,10 @@ AS
   CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, Nombre VARCHAR2, Apellidos VARCHAR2, Direccion VARCHAR2, Telefono VARCHAR2) RETURN SELF AS RESULT
   IS BEGIN
     SELF.DNI := DNI;
-    SELF.Nombre := Nombre;
-    SELF.Apellidos := Apellidos;
-    SELF.Direccion := Direccion;
-    SELF.Telefono := Telefono;  
+    SELF.nombre := nombre;
+    SELF.apellidos := apellidos;
+    SELF.direccion := direccion;
+    SELF.telefono := telefono;  
   END;
   
   -- Definición del método getDNI
@@ -72,49 +73,49 @@ AS
    -- Definición del método getNombre
   MEMBER FUNCTION getNombre RETURN VARCHAR2
   IS BEGIN
-    RETURN SELF.Nombre;
+    RETURN SELF.nombre;
   END getNombre;
   
   -- Definición del método setNombre
-  MEMBER PROCEDURE setNombre(Nombre VARCHAR2)
+  MEMBER PROCEDURE setNombre(nombre VARCHAR2)
   IS BEGIN
-    SELF.Nombre := Nombre;
+    SELF.nombre := nombre;
   END setNombre;  
   
   -- Definición del método getApellidos
   MEMBER FUNCTION getApellidos RETURN VARCHAR2
   IS BEGIN
-    RETURN SELF.Apellidos;
+    RETURN SELF.apellidos;
   END getApellidos;
   
   -- Definición del método setApellidos
-  MEMBER PROCEDURE setApellidos(Apellidos VARCHAR2)
+  MEMBER PROCEDURE setApellidos(apellidos VARCHAR2)
   IS BEGIN
-    SELF.Apellidos := Apellidos;
+    SELF.apellidos := apellidos;
   END setApellidos;    
   
   -- Definición del método getDireccion
   MEMBER FUNCTION getDireccion RETURN VARCHAR2
   IS BEGIN
-    RETURN SELF.Direccion;
+    RETURN SELF.direccion;
   END getDireccion;  
   
   -- Definición del método setDireccion
-  MEMBER PROCEDURE setDireccion(Direccion VARCHAR2)
+  MEMBER PROCEDURE setDireccion(direccion VARCHAR2)
   IS BEGIN
-    SELF.Direccion := Direccion;
+    SELF.direccion := direccion;
   END setDireccion;    
   
   -- Definición del método getTelefono
   MEMBER FUNCTION getTelefono RETURN VARCHAR2
   IS BEGIN
-    RETURN SELF.Telefono;
+    RETURN SELF.telefono;
   END getTelefono;    
   
   -- Definición del método setTelefono
-  MEMBER PROCEDURE setTelefono(Telefono VARCHAR2)
+  MEMBER PROCEDURE setTelefono(telefono VARCHAR2)
   IS BEGIN
-    SELF.Telefono := Telefono;
+    SELF.telefono := telefono;
   END setTelefono;      
 END;
 
@@ -237,16 +238,19 @@ CREATE TYPE Habitacion AS OBJECT
 ( 
   -- Atributos del objeto Habitacion
   descripcion               VARCHAR2(50), 
-  television                CHAR(1), 
+  television                CHAR(1),
+  refPaciente               REF Paciente,
   
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR, refPaciente REF Paciente) RETURN SELF AS RESULT,
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getDescripcion RETURN VARCHAR2,
   MEMBER PROCEDURE setDescripcion(descripcion VARCHAR2),
   MEMBER FUNCTION getTelevision RETURN CHAR,
-  MEMBER PROCEDURE setTelevision(television CHAR)
+  MEMBER PROCEDURE setTelevision(television CHAR),
+  MEMBER FUNCTION getRefPaciente RETURN REF Paciente,
+  MEMBER PROCEDURE setRefPaciente(refPaciente REF Paciente)
 );
 
 /
@@ -255,10 +259,11 @@ CREATE TYPE Habitacion AS OBJECT
 CREATE TYPE BODY Habitacion
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR, refPaciente REF Paciente) RETURN SELF AS RESULT
   IS BEGIN
     SELF.descripcion := descripcion;
     SELF.television := television;
+    SELF.refPaciente := refPaciente;
   END;
   
   -- Definición del método getDescripcion
@@ -267,7 +272,7 @@ AS
     RETURN SELF.descripcion;
   END getDescripcion;
   
-  -- Definición del método setNumColegiado
+  -- Definición del método setDescripcion
   MEMBER PROCEDURE setDescripcion(descripcion VARCHAR2)
   IS BEGIN
     SELF.descripcion := descripcion;
@@ -279,9 +284,221 @@ AS
     RETURN SELF.television;
   END getTelevision;
   
-  -- Definición del método setAlergologia
+  -- Definición del método setTelevision
   MEMBER PROCEDURE setTelevision(television CHAR)
   IS BEGIN
     SELF.television := television;
   END setTelevision;      
+  
+  -- Definición del método getRefPaciente
+  MEMBER FUNCTION getRefPaciente RETURN REF Paciente
+  IS BEGIN
+    RETURN SELF.refPaciente;
+  END getRefPaciente;
+  
+  -- Definición del método setRefPaciente
+  MEMBER PROCEDURE setRefPaciente(refPaciente REF Paciente)
+  IS BEGIN
+    SELF.refPaciente := refPaciente;
+  END setRefPaciente;        
+END;
+
+/
+
+-- Creamos un tipo para almacenar las habitaciones
+-- del hospital
+CREATE TYPE TablaHabitaciones
+   AS TABLE OF REF Habitacion;
+
+/
+
+-- Especificación del objeto Hospital
+CREATE TYPE Hospital AS OBJECT
+( 
+  -- Atributos del objeto Habitacion
+  nombre               VARCHAR2(50), 
+  direccion            VARCHAR2(250), 
+  telefono             VARCHAR2(15), 
+  fax                  VARCHAR2(15),
+  habitaciones         TablaHabitaciones,
+    
+  -- Definición del constructor
+  CONSTRUCTOR FUNCTION Hospital(nombre VARCHAR2, direccion VARCHAR2, telefono VARCHAR2, fax VARCHAR2, habitaciones TablaHabitaciones) RETURN SELF AS RESULT,
+  
+  -- Definición del resto de funciones
+  MEMBER FUNCTION getNombre RETURN VARCHAR2,
+  MEMBER PROCEDURE setNombre(nombre VARCHAR2),
+  MEMBER FUNCTION getDireccion RETURN VARCHAR2,
+  MEMBER PROCEDURE setDireccion(direccion VARCHAR2),
+  MEMBER FUNCTION getTelefono RETURN VARCHAR2,
+  MEMBER PROCEDURE setTelefono(telefono VARCHAR2),
+  MEMBER FUNCTION getFax RETURN VARCHAR2,
+  MEMBER PROCEDURE setFax(fax VARCHAR2),
+  MEMBER FUNCTION getHabitaciones RETURN TablaHabitaciones,
+  MEMBER PROCEDURE setHabitaciones(habitaciones TablaHabitaciones)  
+);
+
+/
+
+-- Cuerpo del objeto Hospital
+CREATE TYPE BODY Hospital
+AS
+  -- Definición del constructor
+  CONSTRUCTOR FUNCTION Hospital(nombre VARCHAR2, direccion VARCHAR2, telefono VARCHAR2, fax VARCHAR2, habitaciones TablaHabitaciones) RETURN SELF AS RESULT
+  IS BEGIN
+    SELF.nombre := nombre;
+    SELF.direccion := direccion;
+    SELF.telefono := telefono;
+    SELF.fax := fax;
+    SELF.habitaciones := habitaciones;
+  END;
+  
+  -- Definición del método getNombre
+  MEMBER FUNCTION getNombre RETURN VARCHAR2
+  IS BEGIN
+    RETURN SELF.nombre;
+  END getNombre;
+  
+  -- Definición del método setNombre
+  MEMBER PROCEDURE setNombre(nombre VARCHAR2)
+  IS BEGIN
+    SELF.nombre := nombre;
+  END setNombre;      
+
+  -- Definición del método getDireccion
+  MEMBER FUNCTION getDireccion RETURN VARCHAR2
+  IS BEGIN
+    RETURN SELF.direccion;
+  END getDireccion;
+  
+  -- Definición del método setDireccion
+  MEMBER PROCEDURE setDireccion(direccion VARCHAR2)
+  IS BEGIN
+    SELF.direccion := direccion;
+  END setDireccion; 
+    
+  -- Definición del método getTelefono
+  MEMBER FUNCTION getTelefono RETURN VARCHAR2
+  IS BEGIN
+    RETURN SELF.direccion;
+  END getTelefono;
+  
+  -- Definición del método setTelefono
+  MEMBER PROCEDURE setTelefono(telefono VARCHAR2)
+  IS BEGIN
+    SELF.telefono := telefono;
+  END setTelefono;   
+  
+  -- Definición del método getFax
+  MEMBER FUNCTION getFax RETURN VARCHAR2
+  IS BEGIN
+    RETURN SELF.fax;
+  END getFax;
+  
+  -- Definición del método setFax
+  MEMBER PROCEDURE setFax(fax VARCHAR2)
+  IS BEGIN
+    SELF.fax := fax;
+  END setFax;     
+  
+  -- Definición del método getFax
+  MEMBER FUNCTION getHabitaciones RETURN TablaHabitaciones
+  IS BEGIN
+    RETURN SELF.habitaciones;
+  END getHabitaciones;
+  
+  -- Definición del método setFax
+  MEMBER PROCEDURE setHabitaciones(habitaciones TablaHabitaciones)
+  IS BEGIN
+    SELF.habitaciones := habitaciones;
+  END setHabitaciones;      
+END;
+
+/
+
+-- Especificación del objeto Diagnostico
+CREATE TYPE Diagnostico AS OBJECT
+( 
+  -- Atributos del objeto Diagnostico
+  enfermedad           VARCHAR2(100), 
+  tratamiento          VARCHAR2(500), 
+  refPaciente          REF Paciente, 
+  refMedico            REF Medico,
+    
+  -- Definición del constructor
+  CONSTRUCTOR FUNCTION Diagnostico(enfermedad VARCHAR2, tratamiento VARCHAR2, refPaciente REF Paciente, refMedico REF Medico) RETURN SELF AS RESULT,
+  
+  -- Definición del resto de funciones
+  MEMBER FUNCTION getEnfermedad RETURN VARCHAR2,
+  MEMBER PROCEDURE setEnfermedad(enfermedad VARCHAR2),
+  MEMBER FUNCTION getTratamiento RETURN VARCHAR2,
+  MEMBER PROCEDURE setTratamiento(tratamiento VARCHAR2),
+  MEMBER FUNCTION getRefPaciente RETURN REF Paciente,
+  MEMBER PROCEDURE setRefPaciente(refPaciente REF Paciente),
+  MEMBER FUNCTION getRefMedico RETURN REF Medico,
+  MEMBER PROCEDURE setRefMedico(refMedico REF Medico)    
+);
+
+/
+
+-- Cuerpo del objeto Diagnostico
+CREATE TYPE BODY Diagnostico
+AS
+  -- Definición del constructor
+  CONSTRUCTOR FUNCTION Diagnostico(enfermedad VARCHAR2, tratamiento VARCHAR2, refPaciente REF Paciente, refMedico REF Medico) RETURN SELF AS RESULT
+  IS BEGIN
+    SELF.enfermedad := enfermedad;
+    SELF.tratamiento := tratamiento;
+    SELF.refPaciente := refPaciente;
+    SELF.refMedico := refMedico;
+  END;
+  
+  -- Definición del método getEnfermedad
+  MEMBER FUNCTION getEnfermedad RETURN VARCHAR2
+  IS BEGIN
+    RETURN SELF.enfermedad;
+  END getEnfermedad;
+  
+  -- Definición del método setEnfermedad
+  MEMBER PROCEDURE setEnfermedad(enfermedad VARCHAR2)
+  IS BEGIN
+    SELF.enfermedad := enfermedad;
+  END setEnfermedad;   
+  
+  -- Definición del método getTratamiento
+  MEMBER FUNCTION getTratamiento RETURN VARCHAR2
+  IS BEGIN
+    RETURN SELF.tratamiento;
+  END getTratamiento;
+  
+  -- Definición del método setTratamiento
+  MEMBER PROCEDURE setTratamiento(tratamiento VARCHAR2)
+  IS BEGIN
+    SELF.tratamiento := tratamiento;
+  END setTratamiento;   
+  
+  -- Definición del método getRefPaciente
+  MEMBER FUNCTION getRefPaciente RETURN REF Paciente
+  IS BEGIN
+    RETURN SELF.refPaciente;
+  END getRefPaciente;
+  
+  -- Definición del método setRefPaciente
+  MEMBER PROCEDURE setRefPaciente(refPaciente REF Paciente)
+  IS BEGIN
+    SELF.refPaciente := refPaciente;
+  END setRefPaciente;     
+  
+  -- Definición del método getRefMedico
+  MEMBER FUNCTION getRefMedico RETURN REF Medico
+  IS BEGIN
+    RETURN SELF.refMedico;
+  END getRefMedico;
+  
+  -- Definición del método setRefPaciente
+  MEMBER PROCEDURE setRefMedico(refMedico REF Medico)
+  IS BEGIN
+    SELF.refMedico := refMedico;
+  END setRefMedico;     
+  
 END;
