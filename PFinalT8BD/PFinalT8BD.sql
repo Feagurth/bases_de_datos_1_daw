@@ -21,7 +21,6 @@ DROP TABLE tbPersona;
 DROP TABLE tbPaciente;
 DROP TABLE tbMedico;
 DROP TABLE tbHabitacion;
-DROP TABLE tbTablaHabitaciones;
 DROP TABLE tbHospital;
 DROP TABLE tbDiagnostico;
 
@@ -517,7 +516,6 @@ CREATE TABLE tbPersona OF Persona;
 CREATE TABLE tbPaciente OF Paciente;
 CREATE TABLE tbMedico OF Medico;
 CREATE TABLE tbHabitacion OF Habitacion;
-CREATE TABLE tbTablaHabitaciones (refHabitacion  TablaHabitaciones) NESTED TABLE refHabitacion STORE AS tbRefTablaHabitaciones;
-CREATE TABLE tbHospital OF Hospital;
+CREATE TABLE tbHospital OF Hospital(nombre NOT NULL, direccion NOT NULL, telefono NOT NULL, fax NOT NULL) NESTED TABLE habitaciones STORE AS tbTablaHabitaciones;
 CREATE TABLE tbDiagnostico OF Diagnostico;
 
