@@ -56,11 +56,12 @@ BEGIN
 END;
 END;
 /
--- Crea, como tipo heredado de “MiembroEscolar”, el tipo de objeto “Profesor” con los siguientes atributos:
+-- Crea, como tipo heredado de “MiembroEscolar”, el tipo de objeto “Profesor” 
+-- con los siguientes atributos:
 -- especialidad VARCHAR2(20),
 -- antiguedad INTEGER
 -- Especificación del objeto Profesor
-CREATE OR REPLACE TYPE Profesor UNDER MiembroEscolar ( especialidad VARCHAR2(20), antiguedad INTEGER, CONSTRUCTOR
+CREATE OR REPLACE TYPE Profesor UNDER MiembroEscolar (especialidad VARCHAR2(20), antiguedad INTEGER, CONSTRUCTOR
 FUNCTION Profesor(
     especialidad VARCHAR2,
     antiguedad   INTEGER)

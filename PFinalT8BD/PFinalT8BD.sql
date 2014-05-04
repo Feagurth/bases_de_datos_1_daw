@@ -8,7 +8,8 @@
 -- arbitrario elegido por ti a cada atributo. Por último, define una tabla de cada 
 -- tipo de objeto e inserta como mínimo 5 registros en cada tabla inventados por ti
 
--- Debug
+-- Eliminación de tipos y tablas en caso de que existieran de algúna ejecución
+-- anterior
 DROP TYPE Hospital FORCE;
 DROP TYPE TablaHabitaciones FORCE;
 DROP TYPE Habitacion FORCE;
@@ -35,7 +36,8 @@ CREATE TYPE Persona AS OBJECT
   telefono            VARCHAR2(15), 
   
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, nombre VARCHAR2, apellidos VARCHAR2, direccion VARCHAR2, telefono VARCHAR2)RETURN SELF AS RESULT, 
+  CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, nombre VARCHAR2, apellidos VARCHAR2, 
+      direccion VARCHAR2, telefono VARCHAR2)RETURN SELF AS RESULT, 
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getDNI RETURN VARCHAR2,
@@ -56,13 +58,15 @@ CREATE TYPE Persona AS OBJECT
 CREATE TYPE BODY Persona
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, Nombre VARCHAR2, Apellidos VARCHAR2, Direccion VARCHAR2, Telefono VARCHAR2) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Persona(DNI VARCHAR2, Nombre VARCHAR2, Apellidos VARCHAR2, 
+      Direccion VARCHAR2, Telefono VARCHAR2) RETURN SELF AS RESULT
   IS BEGIN
     SELF.DNI := DNI;
     SELF.nombre := nombre;
     SELF.apellidos := apellidos;
     SELF.direccion := direccion;
-    SELF.telefono := telefono;  
+    SELF.telefono := telefono;
+    RETURN;
   END;
   
   -- Definición del método getDNI
@@ -136,7 +140,8 @@ CREATE TYPE Medico UNDER Persona
   sueldo            FLOAT,
   
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Medico(numColegiado VARCHAR2, sueldo FLOAT) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION Medico(numColegiado VARCHAR2, sueldo FLOAT) RETURN SELF 
+      AS RESULT,
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getNumColegiado RETURN VARCHAR2,
@@ -151,10 +156,12 @@ CREATE TYPE Medico UNDER Persona
 CREATE TYPE BODY Medico
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Medico(numColegiado VARCHAR2, sueldo FLOAT) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Medico(numColegiado VARCHAR2, sueldo FLOAT) RETURN SELF 
+      AS RESULT
   IS BEGIN
     SELF.numColegiado := numColegiado;
     SELF.sueldo := sueldo;
+    RETURN;
   END;
   
   -- Definición del método getNumColegiado
@@ -192,7 +199,8 @@ CREATE TYPE Paciente UNDER Persona
   alergologia               VARCHAR2(200), 
   
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Paciente(enfermedadesCronicas VARCHAR2, alergologia VARCHAR2) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION Paciente(enfermedadesCronicas VARCHAR2, 
+      alergologia VARCHAR2) RETURN SELF AS RESULT,
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getEnfermedadesCronicas RETURN VARCHAR2,
@@ -207,10 +215,12 @@ CREATE TYPE Paciente UNDER Persona
 CREATE TYPE BODY Paciente
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Paciente(enfermedadesCronicas VARCHAR2, alergologia VARCHAR2) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Paciente(enfermedadesCronicas VARCHAR2, 
+      alergologia VARCHAR2) RETURN SELF AS RESULT
   IS BEGIN
     SELF.enfermedadesCronicas := enfermedadesCronicas;
     SELF.alergologia := alergologia;
+    RETURN;
   END;
   
   -- Definición del método getEnfermedadesCronicas
@@ -249,7 +259,8 @@ CREATE TYPE Habitacion AS OBJECT
   refPaciente               REF Paciente,
   
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR, refPaciente REF Paciente) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR, 
+      refPaciente REF Paciente) RETURN SELF AS RESULT,
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getDescripcion RETURN VARCHAR2,
@@ -266,11 +277,13 @@ CREATE TYPE Habitacion AS OBJECT
 CREATE TYPE BODY Habitacion
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR, refPaciente REF Paciente) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Habitacion(descripcion VARCHAR2, television CHAR, 
+      refPaciente REF Paciente) RETURN SELF AS RESULT
   IS BEGIN
     SELF.descripcion := descripcion;
     SELF.television := television;
     SELF.refPaciente := refPaciente;
+    RETURN;
   END;
   
   -- Definición del método getDescripcion
@@ -330,7 +343,9 @@ CREATE TYPE Hospital AS OBJECT
   habitaciones         TablaHabitaciones,
     
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Hospital(nombre VARCHAR2, direccion VARCHAR2, telefono VARCHAR2, fax VARCHAR2, habitaciones TablaHabitaciones) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION Hospital(nombre VARCHAR2, direccion VARCHAR2, 
+      telefono VARCHAR2, fax VARCHAR2, habitaciones TablaHabitaciones) 
+      RETURN SELF AS RESULT,
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getNombre RETURN VARCHAR2,
@@ -351,13 +366,16 @@ CREATE TYPE Hospital AS OBJECT
 CREATE TYPE BODY Hospital
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Hospital(nombre VARCHAR2, direccion VARCHAR2, telefono VARCHAR2, fax VARCHAR2, habitaciones TablaHabitaciones) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Hospital(nombre VARCHAR2, direccion VARCHAR2, 
+      telefono VARCHAR2, fax VARCHAR2, habitaciones TablaHabitaciones) 
+      RETURN SELF AS RESULT
   IS BEGIN
     SELF.nombre := nombre;
     SELF.direccion := direccion;
     SELF.telefono := telefono;
     SELF.fax := fax;
     SELF.habitaciones := habitaciones;
+    RETURN;
   END;
   
   -- Definición del método getNombre
@@ -433,7 +451,8 @@ CREATE TYPE Diagnostico AS OBJECT
   refMedico            REF Medico,
     
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Diagnostico(enfermedad VARCHAR2, tratamiento VARCHAR2, refPaciente REF Paciente, refMedico REF Medico) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION Diagnostico(enfermedad VARCHAR2, tratamiento VARCHAR2, 
+      refPaciente REF Paciente, refMedico REF Medico) RETURN SELF AS RESULT,
   
   -- Definición del resto de funciones
   MEMBER FUNCTION getEnfermedad RETURN VARCHAR2,
@@ -452,12 +471,14 @@ CREATE TYPE Diagnostico AS OBJECT
 CREATE TYPE BODY Diagnostico
 AS
   -- Definición del constructor
-  CONSTRUCTOR FUNCTION Diagnostico(enfermedad VARCHAR2, tratamiento VARCHAR2, refPaciente REF Paciente, refMedico REF Medico) RETURN SELF AS RESULT
+  CONSTRUCTOR FUNCTION Diagnostico(enfermedad VARCHAR2, tratamiento VARCHAR2, 
+      refPaciente REF Paciente, refMedico REF Medico) RETURN SELF AS RESULT
   IS BEGIN
     SELF.enfermedad := enfermedad;
     SELF.tratamiento := tratamiento;
     SELF.refPaciente := refPaciente;
     SELF.refMedico := refMedico;
+    RETURN;
   END;
   
   -- Definición del método getEnfermedad
@@ -512,10 +533,264 @@ END;
 
 /
 
+-- Creación de tablas a partir de los objetos creados anteriormente
 CREATE TABLE tbPersona OF Persona;
 CREATE TABLE tbPaciente OF Paciente;
 CREATE TABLE tbMedico OF Medico;
-CREATE TABLE tbHabitacion OF Habitacion;
-CREATE TABLE tbHospital OF Hospital(nombre NOT NULL, direccion NOT NULL, telefono NOT NULL, fax NOT NULL) NESTED TABLE habitaciones STORE AS tbTablaHabitaciones;
+CREATE TABLE tbHabitacion OF Habitacion;  
 CREATE TABLE tbDiagnostico OF Diagnostico;
 
+-- Al crear la tabla a partir del objeto Hospital, hay que especificar que el 
+-- campo correspondiente a la tabla anidada se almacenará en una tabla aparte
+CREATE TABLE tbHospital OF Hospital(nombre NOT NULL, direccion NOT NULL, 
+    telefono NOT NULL, fax NOT NULL) NESTED TABLE habitaciones 
+    STORE AS tbTablaHabitaciones;
+
+-- Declaramos las variables que usaremos
+DECLARE 
+  unMedico        Medico;
+  unPaciente      Paciente;
+  unDiagnostico   Diagnostico;
+  unaHabitacion   Habitacion;
+  unHospital      Hospital;
+  
+  refMedico       REF Medico;
+  refPaciente     REF Paciente;
+  
+  refHab1         REF Habitacion;
+  refHab2         REF Habitacion;
+  refHab3         REF Habitacion;
+  refHab4         REF Habitacion;
+  refHab5         REF Habitacion;
+  
+BEGIN
+
+  --------------------------------------
+  -- Creación e insercción de medicos --
+  --------------------------------------
+
+  -- Creamos el primer médico
+  unMedico := NEW Medico('11111111A', 'Rudy', 'Mentario', 'Acacias, 15', 
+      '111111111', '001', 1000.00);
+  
+  -- Lo introducimos en la tabla correspondiente
+  INSERT INTO tbMedico VALUES(unMedico);
+
+  -- Creamos el segundo médico
+  unMedico := NEW Medico('22222222B', 'Carmen', 'Opausia', 'Palmeras, 3', 
+      '222222222', '002', 2000.00);
+    
+  -- Lo introducimos en la tabla correspondiente  
+  INSERT INTO tbMedico VALUES(unMedico);
+
+  -- Creamos el tercer médico
+  unMedico := NEW Medico('33333333C', 'Josechu', 'Leton', 'Rododendros, 49', 
+      '333333333', '003', 3000.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);
+
+  -- Creamos el cuarto médico
+  unMedico := NEW Medico('44444444D', 'Jose', 'Rucho', 'Pino, 5', 
+      '4444444444', '004', 4000.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);
+  
+  -- Creamos el quinto médico  
+  unMedico := NEW Medico('55555555E', 'Pepe', 'Ñazo', 'Abetos, 6', 
+      '555555555', '005', 5000.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);
+  
+  ----------------------------------------
+  -- Creación e insercción de pacientes --
+  ----------------------------------------
+  
+  -- Creamos el primer paciente
+  unPaciente := NEW Paciente('66666666F', 'Pepe', 'Reza', 'Alcornoques, 45', 
+      '666666666', 'Herpes', 'Alergico a las sulfamidas');
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el segundo paciente
+  unPaciente := NEW Paciente('777777777G', 'Aitor', 'Tilla', 'Limonero, 6', 
+      '777777777', 'Cardiopatía congénita', 'Alergico al trabajo');
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);  
+
+  -- Creamos el tercer paciente
+  unPaciente := NEW Paciente('88888888H', 'Carmelo', 'Cotón', 'Alcornoques, 54', 
+      '888888888', NULL, NULL);
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el Cuarto paciente
+  unPaciente := NEW Paciente('99999999I', 'Encarna', 'Vales', 'Cedro, 11', 
+      '999999999', 'Piedras en el riñon', 'Alergica al trabajo');
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el quinto paciente
+  unPaciente := NEW Paciente('75891814J', 'Enrique', 'Cido', 'Laurel, 67', 
+      '123456789', 'Hepatitis C', 'Alergico al comino');
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+
+  -------------------------------------------
+  -- Creación e insercción de diagnósticos --
+  -------------------------------------------
+
+  -- Creamos una referencia para el primer paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '66666666F';
+  
+  -- Creamos una referencia para el primer medico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '11111111A';
+
+  -- Creamos el primer diagnóstico
+  unDiagnostico := NEW Diagnostico('Enfermedad de Addison', 
+      'Dosis de fludrocortisona', refPaciente, refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);
+  
+  -- Creamos una referencia para el segundo paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '777777777G';
+  
+  -- Creamos una referencia para el segundo medico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '22222222B';
+
+  -- Creamos el segundo diagnóstico
+  unDiagnostico := NEW Diagnostico('Mononucleosis infecciosa', 
+      'reposo, ingesta abundante de líquidos y la toma de ibuprofeno o paracetamol', 
+      refPaciente, refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);  
+    
+  -- Creamos una referencia para el tercer paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '88888888H';
+  
+  -- Creamos una referencia para el tercer médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '33333333C';
+
+  -- Creamos el tercer diagnóstico
+  unDiagnostico := NEW Diagnostico('Enfermedad de Crohn', 
+      'Infliximab y Adalimumab', refPaciente, refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);  
+    
+  -- Creamos una referencia para el cuarto paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '99999999I';
+  
+  -- Creamos una referencia para el cuarto médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '44444444D';
+
+  -- Creamos el cuarto diagnóstico
+  unDiagnostico := NEW Diagnostico('Cordoma', 
+      'Resección quirúrgica completa, seguida de radioterapia', refPaciente, 
+      refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);      
+        
+  -- Creamos una referencia al quinto paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '75891814J';
+  
+  -- Creamos una referencia al quinto médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '55555555E';
+
+  -- Creamos el cuarto diagnóstico
+  unDiagnostico := NEW Diagnostico('Extrofia vesical', 
+      'Reconstrucción quirúrgica de la vejiga y los genitales', refPaciente, 
+      refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);       
+  
+  -------------------------------------------
+  -- Creación e insercción de habitaciones --
+  -------------------------------------------
+  
+  -- Creamos una referencia para el primer paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '66666666F';
+
+  -- Creamos la primera habitación
+  unaHabitacion := NEW Habitacion('Habitación 001', 's', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);       
+  
+  -- Creamos una referencia para el segundo paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '777777777G';
+
+  -- Creamos la segunda habitación
+  unaHabitacion := NEW Habitacion('Habitación 002', 's', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);       
+
+  -- Creamos una referencia para el tercer paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '88888888H';
+
+  -- Creamos la tercera habitación
+  unaHabitacion := NEW Habitacion('Habitación 003', 'n', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);       
+  
+  -- Creamos la cuarta habitación. Esta habitación no tendrá pacientes
+  unaHabitacion := NEW Habitacion('Habitación 004', 'n', NULL);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);       
+
+    -- Creamos una referencia para el quinto paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '75891814J';
+
+  -- Creamos la quinta habitación
+  unaHabitacion := NEW Habitacion('Habitación 005', 's', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);         
+  
+  
+  ---------------------------------------
+  -- Creación e insercción de Hospital --
+  ---------------------------------------
+  
+  -- Creamos las referencias a las habitaciones que tiene el hotel.
+  SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitación 001';
+      
+  SELECT REF (p) INTO refHab2 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitación 002';
+      
+  SELECT REF (p) INTO refHab3 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitación 003';
+      
+  SELECT REF (p) INTO refHab4 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitación 004';
+      
+  SELECT REF (p) INTO refHab5 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitación 005';
+  
+  -- Creamos un nuevo objeto hotel, pasandole las referencias a las habitaciones
+  -- como un objeto TablaHabitaciones
+  unHospital := New Hospital('Sagrado Corazón', 
+      'C/ Viladomat, 288, 08029 Barcelona', 
+      '934948924', 
+      '934948925', 
+      TablaHabitaciones(refHab1, refHab2, refHab3, refHab4, refHab5));
+  
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbHospital VALUES(unHospital);
+END;
