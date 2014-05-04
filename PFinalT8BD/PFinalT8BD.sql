@@ -9,13 +9,21 @@
 -- tipo de objeto e inserta como mínimo 5 registros en cada tabla inventados por ti
 
 -- Debug
-DROP TYPE Hospital;
-DROP TYPE TablaHabitaciones;
-DROP TYPE Habitacion;
-DROP TYPE Diagnostico;
-DROP TYPE Paciente;
-DROP TYPE Medico;
-DROP TYPE Persona;
+DROP TYPE Hospital FORCE;
+DROP TYPE TablaHabitaciones FORCE;
+DROP TYPE Habitacion FORCE;
+DROP TYPE Diagnostico FORCE;
+DROP TYPE Paciente FORCE;
+DROP TYPE Medico FORCE;
+DROP TYPE Persona FORCE;
+
+DROP TABLE tbPersona;
+DROP TABLE tbPaciente;
+DROP TABLE tbMedico;
+DROP TABLE tbHabitacion;
+DROP TABLE tbTablaHabitaciones;
+DROP TABLE tbHospital;
+DROP TABLE tbDiagnostico;
 
 -- Cabecera del objeto Persona
 CREATE TYPE Persona AS OBJECT
@@ -502,3 +510,14 @@ AS
   END setRefMedico;     
   
 END;
+
+/
+
+CREATE TABLE tbPersona OF Persona;
+CREATE TABLE tbPaciente OF Paciente;
+CREATE TABLE tbMedico OF Medico;
+CREATE TABLE tbHabitacion OF Habitacion;
+CREATE TABLE tbTablaHabitaciones (refHabitacion  TablaHabitaciones) NESTED TABLE refHabitacion STORE AS tbRefTablaHabitaciones;
+CREATE TABLE tbHospital OF Hospital;
+CREATE TABLE tbDiagnostico OF Diagnostico;
+
