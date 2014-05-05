@@ -640,6 +640,34 @@ BEGIN
   -- Lo introducimos en la tabla correspondiente    
   INSERT INTO tbMedico VALUES(unMedico);
   
+  -- Creamos el sexto médico  
+  unMedico := NEW Medico('123654789G', 'Alan', 'Brito', 'Eucaliptos, 56', 
+      '123654789', '006', 1000.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);  
+  
+    -- Creamos el septimo médico  
+  unMedico := NEW Medico('115975382E', 'Estela', 'Gartija', 'Chopos, sn', 
+      '123123132', '007', 1500.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);  
+
+  -- Creamos el octavo médico  
+  unMedico := NEW Medico('115544669T', 'Chema', 'Pamundi', 'Carambolo, 7', 
+      '123321123', '008', 1550.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);  
+
+  -- Creamos el noveno médico  
+  unMedico := NEW Medico('987654321K', 'Jesus', 'Tituto', 'Lentisco, 99', 
+      '456654456', '009', 1235.00);
+
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbMedico VALUES(unMedico);  
+
 ----------------------------------------
 -- Creación e insercción de pacientes --
 ----------------------------------------
@@ -675,6 +703,34 @@ BEGIN
   -- Creamos el quinto paciente
   unPaciente := NEW Paciente('75891814J', 'Enrique', 'Cido', 'Laurel, 67', 
       '123456789', 'Hepatitis C', 'Alergico al comino');
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el sexto paciente
+  unPaciente := NEW Paciente('141748924H', 'Debora', 'Dora', 'Higero, 89', 
+      '963258741', NULL, NULL);
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el septimo paciente
+  unPaciente := NEW Paciente('15896547M', 'Francisco', 'Rupto', 'Madroño, 1', 
+      '987123658', 'Gota', NULL);
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el octavo paciente
+  unPaciente := NEW Paciente('11224563P', 'Andres', 'Trozado', 'Mimosa, 89', 
+      '778922546', NULL, 'Intolerancia a la lactosa');
+  
+  -- Lo introducimos en la tabla correspondiente    
+  INSERT INTO tbPaciente VALUES(unPaciente);
+
+  -- Creamos el noveno paciente
+  unPaciente := NEW Paciente('74586932X', 'Ricardo', 'Borriquero', 'Nogal, 11', 
+      '112236984', 'Enfermedad de Chrom', NULL);
   
   -- Lo introducimos en la tabla correspondiente    
   INSERT INTO tbPaciente VALUES(unPaciente);
@@ -743,13 +799,69 @@ BEGIN
   -- Creamos una referencia al quinto médico
   SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '55555555E';
 
-  -- Creamos el cuarto diagnóstico
+  -- Creamos el quinto diagnóstico
   unDiagnostico := NEW Diagnostico('Extrofia vesical', 
       'Reconstrucción quirúrgica de la vejiga y los genitales', refPaciente, 
       refMedico);
 
   -- Lo insertamos en la tabla correspondiente
   INSERT INTO tbDiagnostico VALUES(unDiagnostico);       
+  
+  -- Creamos una referencia al sexto paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '141748924H';
+  
+  -- Creamos una referencia al sexto médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '123654789G';
+
+  -- Creamos el sexto diagnóstico
+  unDiagnostico := NEW Diagnostico('Aniridia', 
+      'Trabeculectomía', refPaciente, 
+      refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);      
+  
+    -- Creamos una referencia al septimo paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '15896547M';
+  
+  -- Creamos una referencia al septimo médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '115975382E';
+
+  -- Creamos el septimo diagnóstico
+  unDiagnostico := NEW Diagnostico('Cólera', 
+      'Rehidratación agresiva y antibióticos', refPaciente, 
+      refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);      
+  
+    -- Creamos una referencia al octavo paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '11224563P';
+  
+  -- Creamos una referencia al octavo médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '115544669T';
+
+  -- Creamos el octavo diagnóstico
+  unDiagnostico := NEW Diagnostico('Enfermedad de Dupuytren', 
+      'Cirugía', refPaciente, 
+      refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);  
+
+    -- Creamos una referencia al noveno paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '74586932X';
+  
+  -- Creamos una referencia al noveno médico
+  SELECT REF (p) INTO refMedico FROM tbMedico p WHERE p.DNI = '987654321K';
+
+  -- Creamos el noveno diagnóstico
+  unDiagnostico := NEW Diagnostico('Brucelosis', 
+      'Rifampicina (600 a 900 mg diarios) y Doxiciclina (200 mg diarios) durante seis semanas', refPaciente, 
+      refMedico);
+
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbDiagnostico VALUES(unDiagnostico);  
   
 -------------------------------------------
 -- Creación e insercción de habitaciones --
@@ -796,12 +908,48 @@ BEGIN
   
   -- La insertamos en la tabla correspondiente
   INSERT INTO tbHabitacion VALUES(unaHabitacion);         
+
+  -- Creamos una referencia para el sexto paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '141748924H';
+
+  -- Creamos la sexta habitación
+  unaHabitacion := NEW Habitacion('Habitación 1A', 's', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);         
+
+  -- Creamos una referencia para el septimo paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '15896547M';
+
+  -- Creamos la septima habitación
+  unaHabitacion := NEW Habitacion('Baja 1', 's', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);         
+
+  -- Creamos una referencia para el octavo paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '11224563P';
+
+  -- Creamos la octava habitación
+  unaHabitacion := NEW Habitacion('3-2', 's', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);         
+
+-- Creamos una referencia para el noveno paciente
+  SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '74586932X';
+
+  -- Creamos la novena habitación
+  unaHabitacion := NEW Habitacion('Habitacion 315', 'n', refPaciente);
+  
+  -- La insertamos en la tabla correspondiente
+  INSERT INTO tbHabitacion VALUES(unaHabitacion);         
   
 ---------------------------------------
 -- Creación e insercción de Hospital --
 ---------------------------------------
   
-  -- Creamos las referencias a las habitaciones que tiene el hotel.
+  -- Creamos las referencias a las habitaciones que tiene el primer hospital.
   SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
       WHERE p.descripcion = 'Habitación 001';
       
@@ -817,7 +965,7 @@ BEGIN
   SELECT REF (p) INTO refHab5 FROM tbHabitacion p 
       WHERE p.descripcion = 'Habitación 005';
   
-  -- Creamos un nuevo objeto hotel, pasandole las referencias a las habitaciones
+  -- Creamos un nuevo objeto hospital, pasandole las referencias a las habitaciones
   -- como un objeto TablaHabitaciones
   unHospital := New Hospital('Sagrado Corazón', 
       'C/ Viladomat, 288, 08029 Barcelona', 
@@ -827,4 +975,56 @@ BEGIN
   
   -- Lo insertamos en la tabla correspondiente
   INSERT INTO tbHospital VALUES(unHospital);
+    
+  -- Creamos las referencias a las habitaciones que tiene el segundo hospital.
+  SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitación 1A';
+  
+  -- Creamos un nuevo objeto hospital, pasandole las referencias a las habitaciones
+  -- como un objeto TablaHabitaciones
+  unHospital := New Hospital('Clínica Mediterraneo', 
+      'Nueva Musa, s/n  [04007]', '950621063', '950621036',
+      TablaHabitaciones(refHab1));
+  
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbHospital VALUES(unHospital);  
+  
+  -- Creamos las referencias a las habitaciones que tiene el tercer hospital.
+  SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Baja 1';
+  
+  -- Creamos un nuevo objeto hospital, pasandole las referencias a las habitaciones
+  -- como un objeto TablaHabitaciones
+  unHospital := New Hospital('Clínica San Rafael', 
+      'La Estrecha, 33 (La Corredoira)[33011]', '985282526', '985282566',
+      TablaHabitaciones(refHab1));
+  
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbHospital VALUES(unHospital);  
+
+  -- Creamos las referencias a las habitaciones que tiene el cuarto hospital.
+  SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
+      WHERE p.descripcion = '3-2';
+  
+  -- Creamos un nuevo objeto hospital, pasandole las referencias a las habitaciones
+  -- como un objeto TablaHabitaciones
+  unHospital := New Hospital('Complejo Asistencial de Soria', 
+      'Pso. de Santa Bárbara, s/n  [42005]', '975234300', '975234301', 
+      TablaHabitaciones(refHab1));
+  
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbHospital VALUES(unHospital);  
+
+  -- Creamos las referencias a las habitaciones que tiene el quinto hospital.
+  SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
+      WHERE p.descripcion = 'Habitacion 315';
+  
+  -- Creamos un nuevo objeto hospital, pasandole las referencias a las habitaciones
+  -- como un objeto TablaHabitaciones
+  unHospital := New Hospital('Hospital Universitari Arnau De Vilanova de Lleida', 
+      'Av. Alcalde Rovira Roure, 80  [25198]', '973248100', '973248101',
+      TablaHabitaciones(refHab1));
+  
+  -- Lo insertamos en la tabla correspondiente
+  INSERT INTO tbHospital VALUES(unHospital);  
 END;

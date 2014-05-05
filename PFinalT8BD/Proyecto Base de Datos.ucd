@@ -1,0 +1,944 @@
+<?xml version="1.0" standalone="yes" ?>
+<diagram>
+    <title>Untitled</title>
+    <DiagramType>Class Diagram</DiagramType>
+    <Version>3.2</Version>
+    <valuesFileName />
+    <elements num="12">
+        <element>
+            <type>UMLCLASS</type>
+            <description>Clase para trabajar con médicos</description>
+            <bgrColor R="128" G="255" B="128" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>36</objId>
+            <ptul X="774" Y="281" />
+            <ptdr X="1024" Y="413" />
+            <links num="2">
+                <link id="40" />
+                <link id="38" />
+            </links>
+            <name>Medico</name>
+            <stereotype />
+            <constraint />
+            <showAttributes />
+            <showMethods />
+            <attributes num="2">
+                <attribute>
+                    <name>numColegiado</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Número de colegiado del médico</description>
+                </attribute>
+                <attribute>
+                    <name>sueldo</name>
+                    <stereotype />
+                    <constraint />
+                    <type>float</type>
+                    <defValue />
+                    <vis>Private</vis>
+                    <description>Sueldo del médico</description>
+                </attribute>
+            </attributes>
+            <operations num="4">
+                <operation>
+                    <name>getNumcolegiado</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el número de colegiado de un médico</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setNumColegiado</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar un número de colegiado a un médico.</description>
+                    <params num="1">
+                        <param>
+                            <name>numColegiado</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getSueldo</name>
+                    <stereotype />
+                    <constraint />
+                    <type>float</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el sueldo de un médico</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setSueldo</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar el sueldo a un médico</description>
+                    <params num="1">
+                        <param>
+                            <name>sueldo</name>
+                            <type>float</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+            </operations>
+        </element>
+        <element>
+            <type>UMLCLASS</type>
+            <description>Clase para trabajar con personas</description>
+            <bgrColor R="128" G="255" B="128" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>37</objId>
+            <ptul X="1219" Y="63" />
+            <ptdr X="1409" Y="339" />
+            <links num="2">
+                <link id="39" />
+                <link id="40" />
+            </links>
+            <name>Persona</name>
+            <stereotype />
+            <constraint />
+            <showAttributes />
+            <showMethods />
+            <attributes num="5">
+                <attribute>
+                    <name>DNI</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Número de DNI de la persona</description>
+                </attribute>
+                <attribute>
+                    <name>nombre</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Nombre de la persona</description>
+                </attribute>
+                <attribute>
+                    <name>apellidos</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Apellidos de la persona</description>
+                </attribute>
+                <attribute>
+                    <name>direccion</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Dirección de la persona</description>
+                </attribute>
+                <attribute>
+                    <name>telefono</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Número de teléfono de la persona</description>
+                </attribute>
+            </attributes>
+            <operations num="10">
+                <operation>
+                    <name>getDNI</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el DNI de una persona</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setDNI</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asginar un DNI a una persona</description>
+                    <params num="1">
+                        <param>
+                            <name>DNI</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getNombre</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperarel nombre de una persona</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setNombre</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar el nombre a una persona</description>
+                    <params num="1">
+                        <param>
+                            <name>nombre</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getApellidos</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar los apellidos de una persona</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setApellidos</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar los apellidos a una persona</description>
+                    <params num="1">
+                        <param>
+                            <name>apellidos</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getDireccion</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar la dirección de una persona</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setDireccion</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asginar la dirección a una persona</description>
+                    <params num="1">
+                        <param>
+                            <name>direccion</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getTelefono</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el telefono de una persona</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setTelefono</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar el telefono de una persona</description>
+                    <params num="1">
+                        <param>
+                            <name>telefono</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+            </operations>
+        </element>
+        <element>
+            <type>UMLAGG</type>
+            <description />
+            <bgrColor R="255" G="255" B="255" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>38</objId>
+            <points num="4">
+                <pt x="634" y="483" />
+                <pt x="705" y="483" />
+                <pt x="705" y="353" />
+                <pt x="774" y="353" />
+            </points>
+            <objStart id="44" />
+            <objEnd id="36" />
+            <stereotype />
+            <constraint />
+            <roleA mult="" />
+            <roleB mult="1" />
+            <composition />
+        </element>
+        <element>
+            <type>UMLGEN</type>
+            <description />
+            <bgrColor R="255" G="255" B="255" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>39</objId>
+            <points num="2">
+                <pt x="1219" y="149" />
+                <pt x="1101" y="149" />
+            </points>
+            <objStart id="37" />
+            <objEnd id="46" />
+            <stereotype>extends</stereotype>
+            <constraint />
+        </element>
+        <element>
+            <type>UMLGEN</type>
+            <description />
+            <bgrColor R="255" G="255" B="255" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>40</objId>
+            <points num="2">
+                <pt x="1219" y="322" />
+                <pt x="1024" y="322" />
+            </points>
+            <objStart id="37" />
+            <objEnd id="36" />
+            <stereotype>extends</stereotype>
+            <constraint />
+        </element>
+        <element>
+            <type>UMLAGG</type>
+            <description />
+            <bgrColor R="255" G="255" B="255" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>41</objId>
+            <points num="3">
+                <pt x="559" y="397" />
+                <pt x="559" y="154" />
+                <pt x="751" y="154" />
+            </points>
+            <objStart id="44" />
+            <objEnd id="46" />
+            <stereotype />
+            <constraint />
+            <roleA mult="" />
+            <roleB mult="1" />
+            <composition />
+        </element>
+        <element>
+            <type>UMLCLASS</type>
+            <description>Clase para trabajar con habitaciones</description>
+            <bgrColor R="128" G="255" B="128" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>42</objId>
+            <ptul X="92" Y="449" />
+            <ptdr X="310" Y="597" />
+            <links num="2">
+                <link id="43" />
+                <link id="45" />
+            </links>
+            <name>Habitacion</name>
+            <stereotype />
+            <constraint />
+            <showAttributes />
+            <showMethods />
+            <attributes num="2">
+                <attribute>
+                    <name>descripcion</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue />
+                    <vis>Private</vis>
+                    <description />
+                </attribute>
+                <attribute>
+                    <name>television</name>
+                    <stereotype />
+                    <constraint />
+                    <type>bool</type>
+                    <defValue>true</defValue>
+                    <vis>Private</vis>
+                    <description />
+                </attribute>
+            </attributes>
+            <operations num="5">
+                <operation>
+                    <name>getDescripcion</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar la descripción de una habitación</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setDescripcion</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar la descripción de una habitación</description>
+                    <params num="1">
+                        <param>
+                            <name>descripcion</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getTelevision</name>
+                    <stereotype />
+                    <constraint />
+                    <type>bool</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar si hay televisión en una habitación</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setTelevision</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar si hay televisión en una habitación</description>
+                    <params num="1">
+                        <param>
+                            <name>television</name>
+                            <type>bool</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getHospital</name>
+                    <stereotype />
+                    <constraint />
+                    <type>Hospital</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el hospital asignado a una habitación</description>
+                    <params num="0" />
+                </operation>
+            </operations>
+        </element>
+        <element>
+            <type>UMLAGG</type>
+            <description />
+            <bgrColor R="255" G="255" B="255" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>43</objId>
+            <points num="2">
+                <pt x="195" y="294" />
+                <pt x="195" y="449" />
+            </points>
+            <objStart id="47" />
+            <objEnd id="42" />
+            <stereotype />
+            <constraint />
+            <roleA mult="" />
+            <roleB mult="1..*" />
+            <composition />
+        </element>
+        <element>
+            <type>UMLCLASS</type>
+            <description>Clase para trabajar con diganósticos</description>
+            <bgrColor R="128" G="255" B="128" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>44</objId>
+            <ptul X="414" Y="397" />
+            <ptdr X="634" Y="593" />
+            <links num="2">
+                <link id="41" />
+                <link id="38" />
+            </links>
+            <name>Diagnostico</name>
+            <stereotype />
+            <constraint />
+            <showAttributes />
+            <showMethods />
+            <attributes num="2">
+                <attribute>
+                    <name>enfermedad</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Enfermedad diganosticada</description>
+                </attribute>
+                <attribute>
+                    <name>tratamiento</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Tratamiento de la enfermedad diagnosticada</description>
+                </attribute>
+            </attributes>
+            <operations num="8">
+                <operation>
+                    <name>getEnfermedad</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar la enfermedad de un diagnóstico</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setEnfermedad</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar una enfermedad de un diagnóstico</description>
+                    <params num="1">
+                        <param>
+                            <name>enfermedad</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getTratamiento</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el tratamiento de un diagnóstico</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setTratamiento</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar el tratamiento a un diagnóstico</description>
+                    <params num="1">
+                        <param>
+                            <name>tratamiento</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getPaciente</name>
+                    <stereotype />
+                    <constraint />
+                    <type>Paciente</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el paciente asignado a un diagnóstico.</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setPaciente</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método que permite asignar un paciente a un diganóstico</description>
+                    <params num="1">
+                        <param>
+                            <name>paciente</name>
+                            <type>Paciente</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getMedico</name>
+                    <stereotype />
+                    <constraint />
+                    <type>Medico</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el médico asociado a un diagnóstico.</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setMedico</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar un médico asociado a un diagnóstico.</description>
+                    <params num="1">
+                        <param>
+                            <name>medico</name>
+                            <type>Medico</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+            </operations>
+        </element>
+        <element>
+            <type>UMLASS</type>
+            <description />
+            <bgrColor R="255" G="255" B="255" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>45</objId>
+            <points num="5">
+                <pt x="881" y="84" />
+                <pt x="881" y="23" />
+                <pt x="390" y="23" />
+                <pt x="390" y="449" />
+                <pt x="310" y="449" />
+            </points>
+            <objStart id="46" />
+            <objEnd id="42" />
+            <stereotype />
+            <constraint />
+            <roleA mult="0..1" />
+            <roleB mult="0..1" />
+        </element>
+        <element>
+            <type>UMLCLASS</type>
+            <description>Clase para trabjar con pacientes</description>
+            <bgrColor R="128" G="255" B="128" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>46</objId>
+            <ptul X="751" Y="84" />
+            <ptdr X="1101" Y="216" />
+            <links num="3">
+                <link id="39" />
+                <link id="45" />
+                <link id="41" />
+            </links>
+            <name>Paciente</name>
+            <stereotype />
+            <constraint />
+            <showAttributes />
+            <showMethods />
+            <attributes num="2">
+                <attribute>
+                    <name>enfermedadesCronicas</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue />
+                    <vis>Private</vis>
+                    <description>Enfermedades crónicas del paciente</description>
+                </attribute>
+                <attribute>
+                    <name>alergologia</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue />
+                    <vis>Private</vis>
+                    <description>Para almacenar las alergias del paciente.</description>
+                </attribute>
+            </attributes>
+            <operations num="4">
+                <operation>
+                    <name>getEnfermedadesCronicas</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar las enfermedades crónicas del paciente</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setEnfermedadesCronicas</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar las enfermedades crónicas del paciente</description>
+                    <params num="1">
+                        <param>
+                            <name>enfermedadesCronicas</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getAlergologia</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar la alergología del paciente</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setAlergologia</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar la alergología de un paciente.</description>
+                    <params num="1">
+                        <param>
+                            <name>alergologia</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+            </operations>
+        </element>
+        <element>
+            <type>UMLCLASS</type>
+            <description>Clase para trabajar con hospitales</description>
+            <bgrColor R="128" G="255" B="128" />
+            <fgrColor R="0" G="0" B="0" />
+            <objId>47</objId>
+            <ptul X="103" Y="66" />
+            <ptdr X="293" Y="294" />
+            <links num="1">
+                <link id="43" />
+            </links>
+            <name>Hospital</name>
+            <stereotype />
+            <constraint />
+            <showAttributes />
+            <showMethods />
+            <attributes num="4">
+                <attribute>
+                    <name>nombre</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Nombre del hospital</description>
+                </attribute>
+                <attribute>
+                    <name>direccion</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Dirección del hospital</description>
+                </attribute>
+                <attribute>
+                    <name>telefono</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Número de teléfono del hospital</description>
+                </attribute>
+                <attribute>
+                    <name>fax</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <defValue>&quot;&quot;</defValue>
+                    <vis>Private</vis>
+                    <description>Número de fax del hospital</description>
+                </attribute>
+            </attributes>
+            <operations num="8">
+                <operation>
+                    <name>getNombre</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el nombre del hospital</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setNombre</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asignar el nombre al hospital</description>
+                    <params num="1">
+                        <param>
+                            <name>nombre</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getDireccion</name>
+                    <stereotype />
+                    <constraint />
+                    <type>string</type>
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar la dirección de un hospital</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setDireccion</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asingar la dirección a un hospital</description>
+                    <params num="1">
+                        <param>
+                            <name>direccion</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getTelefono</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar un número de telefono de un hospital</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setTelefono</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asingar un número de telefono a un hospital</description>
+                    <params num="1">
+                        <param>
+                            <name>telefono</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+                <operation>
+                    <name>getFax</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para recuperar el telefono de un hospital</description>
+                    <params num="0" />
+                </operation>
+                <operation>
+                    <name>setFax</name>
+                    <stereotype />
+                    <constraint />
+                    <type />
+                    <vis>Public</vis>
+                    <showP />
+                    <showPT />
+                    <description>Método para asingar un número de fax a un hospital</description>
+                    <params num="1">
+                        <param>
+                            <name>fax</name>
+                            <type>string</type>
+                            <defValue />
+                        </param>
+                    </params>
+                </operation>
+            </operations>
+        </element>
+    </elements>
+</diagram>
