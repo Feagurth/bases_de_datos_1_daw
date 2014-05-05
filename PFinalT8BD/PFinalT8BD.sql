@@ -25,6 +25,10 @@ DROP TABLE tbHabitacion;
 DROP TABLE tbHospital;
 DROP TABLE tbDiagnostico;
 
+---------------------------------
+-- Definición del tipo Persona --
+---------------------------------
+
 -- Cabecera del objeto Persona
 CREATE TYPE Persona AS OBJECT
 (
@@ -132,6 +136,10 @@ END;
 
 /
 
+--------------------------------
+-- Definición del tipo Médico --
+--------------------------------
+
 -- Especificación del objeto Medico
 CREATE TYPE Medico UNDER Persona 
 ( 
@@ -191,6 +199,10 @@ END;
   
 /
 
+----------------------------------
+-- Definición del tipo Paciente --
+----------------------------------
+
 -- Especificación del objeto Paciente
 CREATE TYPE Paciente UNDER Persona 
 ( 
@@ -249,6 +261,10 @@ AS
 END;
   
 /
+
+------------------------------------
+-- Definición del tipo Habitación --
+------------------------------------
 
 -- Especificación del objeto Habitacion
 CREATE TYPE Habitacion AS OBJECT
@@ -325,12 +341,20 @@ END;
 
 /
 
+-------------------------------------------
+-- Definición del tipo TablaHabitaciones --
+-------------------------------------------
+
 -- Creamos un tipo para almacenar las habitaciones
 -- del hospital
 CREATE TYPE TablaHabitaciones
    AS TABLE OF REF Habitacion;
 
 /
+
+----------------------------------
+-- Definición del tipo Hospital --
+----------------------------------
 
 -- Especificación del objeto Hospital
 CREATE TYPE Hospital AS OBJECT
@@ -441,6 +465,10 @@ END;
 
 /
 
+-------------------------------------
+-- Definición del tipo Diagnóstico --
+-------------------------------------
+
 -- Especificación del objeto Diagnostico
 CREATE TYPE Diagnostico AS OBJECT
 ( 
@@ -533,6 +561,10 @@ END;
 
 /
 
+-------------------------------------------
+-- Creación de las tablas de los objetos --
+-------------------------------------------
+
 -- Creación de tablas a partir de los objetos creados anteriormente
 CREATE TABLE tbPersona OF Persona;
 CREATE TABLE tbPaciente OF Paciente;
@@ -545,6 +577,10 @@ CREATE TABLE tbDiagnostico OF Diagnostico;
 CREATE TABLE tbHospital OF Hospital(nombre NOT NULL, direccion NOT NULL, 
     telefono NOT NULL, fax NOT NULL) NESTED TABLE habitaciones 
     STORE AS tbTablaHabitaciones;
+
+------------------------------
+-- Declaración de variables --
+------------------------------
 
 -- Declaramos las variables que usaremos
 DECLARE 
@@ -565,9 +601,9 @@ DECLARE
   
 BEGIN
 
-  --------------------------------------
-  -- Creación e insercción de medicos --
-  --------------------------------------
+--------------------------------------
+-- Creación e insercción de medicos --
+--------------------------------------
 
   -- Creamos el primer médico
   unMedico := NEW Medico('11111111A', 'Rudy', 'Mentario', 'Acacias, 15', 
@@ -604,9 +640,9 @@ BEGIN
   -- Lo introducimos en la tabla correspondiente    
   INSERT INTO tbMedico VALUES(unMedico);
   
-  ----------------------------------------
-  -- Creación e insercción de pacientes --
-  ----------------------------------------
+----------------------------------------
+-- Creación e insercción de pacientes --
+----------------------------------------
   
   -- Creamos el primer paciente
   unPaciente := NEW Paciente('66666666F', 'Pepe', 'Reza', 'Alcornoques, 45', 
@@ -643,10 +679,9 @@ BEGIN
   -- Lo introducimos en la tabla correspondiente    
   INSERT INTO tbPaciente VALUES(unPaciente);
 
-
-  -------------------------------------------
-  -- Creación e insercción de diagnósticos --
-  -------------------------------------------
+-------------------------------------------
+-- Creación e insercción de diagnósticos --
+-------------------------------------------
 
   -- Creamos una referencia para el primer paciente
   SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '66666666F';
@@ -716,9 +751,9 @@ BEGIN
   -- Lo insertamos en la tabla correspondiente
   INSERT INTO tbDiagnostico VALUES(unDiagnostico);       
   
-  -------------------------------------------
-  -- Creación e insercción de habitaciones --
-  -------------------------------------------
+-------------------------------------------
+-- Creación e insercción de habitaciones --
+-------------------------------------------
   
   -- Creamos una referencia para el primer paciente
   SELECT REF (p) INTO refPaciente FROM tbPaciente p WHERE p.DNI = '66666666F';
@@ -762,10 +797,9 @@ BEGIN
   -- La insertamos en la tabla correspondiente
   INSERT INTO tbHabitacion VALUES(unaHabitacion);         
   
-  
-  ---------------------------------------
-  -- Creación e insercción de Hospital --
-  ---------------------------------------
+---------------------------------------
+-- Creación e insercción de Hospital --
+---------------------------------------
   
   -- Creamos las referencias a las habitaciones que tiene el hotel.
   SELECT REF (p) INTO refHab1 FROM tbHabitacion p 
